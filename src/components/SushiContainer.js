@@ -1,18 +1,22 @@
-import React from "react";
+import React, { useState }from "react";
 import Sushi from "./Sushi"
 import MoreButton from "./MoreButton";
 
 function SushiContainer({ sushi }) {
 
-const filteredSushis = sushi.slice(0, 4)
+const [currentSushi, setCurrentSushi] = useState(sushi.slice(0, 4))
 
-const sushiComponents = filteredSushis.map(s => <Sushi sushi={s}></Sushi>)
-  
+const sushiComponents = currentSushi.map(s => <Sushi sushi={s}></Sushi>)
+
+const addSushi = () => {
+  const index = sushi.indexOf(currentSushi[3])
+  setCurrentSushi(() => sushi.slice(index + 1, index + 5))
+}
 
 return (
     <div className="belt">
       {sushiComponents}
-      <MoreButton />
+      <MoreButton addSushi={addSushi}/>
     </div>
   );
 }
