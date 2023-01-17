@@ -1,7 +1,6 @@
 import React from "react";
 import Sushi from "./Sushi"
 import MoreButton from "./MoreButton";
-import Sushi from "./Sushi";
 
 function SushiContainer({ sushi }) {
 
