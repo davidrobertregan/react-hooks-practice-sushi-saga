@@ -1,12 +1,14 @@
-import React, { useState }from "react";
+import React, { useEffect, useState }from "react";
 import Sushi from "./Sushi"
 import MoreButton from "./MoreButton";
 
-function SushiContainer({ sushi }) {
+function SushiContainer({ sushi, handleSushiClick }) {
 
-const [currentSushi, setCurrentSushi] = useState(sushi.slice(0, 4))
+const [currentSushi, setCurrentSushi] = useState([])
 
-const sushiComponents = currentSushi.map(s => <Sushi sushi={s}></Sushi>)
+useEffect(() => setCurrentSushi(sushi), [sushi]) /* had to put this here rather so that component would rerender for sushi? */
+
+const sushiComponents = currentSushi.slice(0, 4).map(s => <Sushi sushi={s} key={s.id} handleSushiClick={handleSushiClick}></Sushi>)
 
 const addSushi = () => {
   const index = sushi.indexOf(currentSushi[3])
